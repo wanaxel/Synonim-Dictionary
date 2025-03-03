@@ -8,7 +8,7 @@ cd Synonim-Dictionary
 gcc -o Synonim Synonim.C
 ./Synonim
 ```
-
+# Showcase
 <div align="center">
   <img src="https://github.com/user-attachments/assets/96edf98a-5358-4f0a-91f6-51bc70e3951f" width="750" height="200"/> <br>
   <img src="https://github.com/user-attachments/assets/bb80a088-75ac-47d8-8989-476746081342" width="750" height="200"/> <br>
