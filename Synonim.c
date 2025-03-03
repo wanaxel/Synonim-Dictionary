@@ -175,7 +175,6 @@ int main() {
                 int found = 0;
                 for (int i = 0; i < wordCount; i++) {
                     if (strcmp(dictionary[i].word, input) == 0) {
-                        // Shift all elements after the deleted one
                         for (int j = i; j < wordCount - 1; j++) {
                             strcpy(dictionary[j].word, dictionary[j + 1].word);
                             strcpy(dictionary[j].synonym, dictionary[j + 1].synonym);
