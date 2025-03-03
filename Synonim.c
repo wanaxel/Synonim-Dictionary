@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>  
 
 #define MAX_WORDS 1000
 #define WORD_LENGTH 50
@@ -13,6 +14,17 @@ typedef struct {
 
 DictionaryEntry dictionary[MAX_WORDS];
 int wordCount = 0;
+
+int strcasecmp(const char *s1, const char *s2) {
+    while (*s1 && *s2) {
+        if (tolower((unsigned char)*s1) != tolower((unsigned char)*s2)) {
+            return tolower((unsigned char)*s1) - tolower((unsigned char)*s2);
+        }
+        s1++;
+        s2++;
+    }
+    return tolower((unsigned char)*s1) - tolower((unsigned char)*s2);
+}
 
 void clearScreen() {
     system(CLEAR_COMMAND);
@@ -78,15 +90,15 @@ int main() {
                     printf("Enter a word (or type 'exit' to return): ");
                     scanf("%s", input);
                     
-                    if (strcmp(input, "exit") == 0) break;
+                    if (strcasecmp(input, "exit") == 0) break;
                     
                     int found = 0;
                     for (int i = 0; i < wordCount; i++) {
-                        if (strcmp(dictionary[i].word, input) == 0) {
+                        if (strcasecmp(dictionary[i].word, input) == 0) {
                             printf("Synonym: %s\n", dictionary[i].synonym);
                             found = 1;
                             break;
-                        } else if (strcmp(dictionary[i].synonym, input) == 0) {
+                        } else if (strcasecmp(dictionary[i].synonym, input) == 0) {
                             printf("Synonym: %s\n", dictionary[i].word);
                             found = 1;
                             break;
@@ -146,7 +158,7 @@ int main() {
                 
                 int found = 0;
                 for (int i = 0; i < wordCount; i++) {
-                    if (strcmp(dictionary[i].word, input) == 0) {
+                    if (strcasecmp(dictionary[i].word, input) == 0) {
                         printf("Current synonym: %s\n", dictionary[i].synonym);
                         printf("Enter new synonym: ");
                         scanf("%s", dictionary[i].synonym);
@@ -174,7 +186,7 @@ int main() {
                 
                 int found = 0;
                 for (int i = 0; i < wordCount; i++) {
-                    if (strcmp(dictionary[i].word, input) == 0) {
+                    if (strcasecmp(dictionary[i].word, input) == 0) {
                         for (int j = i; j < wordCount - 1; j++) {
                             strcpy(dictionary[j].word, dictionary[j + 1].word);
                             strcpy(dictionary[j].synonym, dictionary[j + 1].synonym);
